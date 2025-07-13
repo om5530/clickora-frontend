@@ -1,2 +1,40 @@
-<p>login works!</p>
-<p-button label="Check" />
+<div class="flex justify-content-center align-items-center min-h-screen">
+  <div class="col-12 sm:col-8 md:col-6 lg:col-4 p-4 border-round bg-white shadow-2">
+    <h2 class="text-center mb-4">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-4">
+      
+      <!-- Email Field -->
+      <div class="p-float-label">
+        <label for="email">Email</label>
+        <input pInputText id="email" type="email" formControlName="email" class="w-full" />
+        @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <small class="p-error text-red-500">Valid email is required</small>
+        }
+      </div>
+
+      <!-- Password Field -->
+      <div class="p-float-label">
+        <label for="password">Password</label>
+        <p-password id="password" formControlName="password" class="w-full" toggleMask [inputStyle]="{width: '100%'}" />
+        @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <small class="p-error text-red-500">Password must be at least 6 characters</small>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <button pButton type="submit" label="Login" [disabled]="loginForm.invalid" class="w-full"></button>
+
+      <!-- Error Message -->
+      @if (errorMessage) {
+        <p class="p-error text-center mt-2 text-red-500">{{ errorMessage }}</p>
+      }
+
+      <!-- Register Link -->
+      <p class="text-center mt-2">
+        Don't have an account?
+        <a [routerLink]="['/register']" class="text-primary">Register</a>
+      </p>
+      
+    </form>
+  </div>
+</div>

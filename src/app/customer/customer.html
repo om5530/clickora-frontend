@@ -1,2 +1,11 @@
-<p>customer works!</p>
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <img src="/c1.jpg" alt="Logo" height="40" />
+  </ng-template>
+
+  <ng-template pTemplate="end">
+    <button pButton label="Logout" (click)="logout()" icon="pi pi-sign-out" class="p-button-sm p-button-text text-red-500"></button>
+  </ng-template>
+</p-menubar>
+
 <router-outlet></router-outlet>
