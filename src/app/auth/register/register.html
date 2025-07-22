@@ -3,6 +3,38 @@
     <h2 class="text-center mb-4">Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-4">
       
+      <!-- username -->
+      <div class="p-float-label">
+        <label for="name">Username</label>
+        <input pInputText id="name" type="text" formControlName="name" class="w-full" />
+        @if(registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+          <small class="p-error text-red-500">Username is required and must be at least 2 characters</small>
+        }
+      </div>
+      <!-- salutation -->
+      <div class="p-float-label">
+        <label for="salutation">Salutation</label>
+        <input pInputText id="salutation" type="text" formControlName="salutation" class="w-full" />
+        @if(registerForm.get('salutation')?.invalid && registerForm.get('salutation')?.touched) {
+          <small class="p-error text-red-500">Salutation is required</small>
+        }
+      </div>
+      <!-- firstName -->
+      <div class="p-float-label">
+        <label for="firstName">First Name</label>
+        <input pInputText id="firstName" type="text" formControlName="firstName" class="w-full" />
+        @if(registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
+          <small class="p-error text-red-500">First name is required</small>
+        }
+      </div>
+      <!-- lastName -->
+      <div class="p-float-label">
+        <label for="lastName">Last Name</label>
+        <input pInputText id="lastName" type="text" formControlName="lastName" class="w-full" />
+        @if(registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+          <small class="p-error text-red-500">Last name is required</small>
+        }
+      </div>
       <!-- Email Field -->
       <div class="p-float-label">
         <label for="email">Email</label>
