@@ -5,6 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CommonModule } from '@angular/common';
+import { first, firstValueFrom } from 'rxjs';
+import { AuthService } from '../../../swagger';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +19,16 @@ export class Register {
   registerForm: FormGroup;
   errorMessage: String = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      salutation: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+
     });
   }
 
@@ -40,6 +46,14 @@ export class Register {
     if (this.registerForm.valid) {
       const { name, email, password, confirmPassword } = this.registerForm.value;
     }
+    console.log(this.registerForm.value);
+    firstValueFrom(this.authService.registerUser(this.registerForm.value)).then((user) => {
+      console.log('Registration successful:', user);
+      this.router.navigate(['/login']);
+    }).catch((error) => {
+      console.error('Registration failed:', error);
+      this.errorMessage = 'Registration failed. Please try again.';
+    })
   }
 
 }

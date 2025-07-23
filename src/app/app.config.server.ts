@@ -3,12 +3,14 @@ import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { appConfig } from './app.config';
 import { serverRoutes } from './app.routes.server';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient, withFetch  } from '@angular/common/http';
+
 
 const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(withRoutes(serverRoutes)),
-    provideAnimations()
-  ]
+    provideAnimations(),
+    provideHttpClient(withFetch())  ]
 };
 
 export const config = mergeApplicationConfig(appConfig, serverConfig);

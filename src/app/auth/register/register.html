@@ -6,8 +6,8 @@
       <!-- username -->
       <div class="p-float-label">
         <label for="name">Username</label>
-        <input pInputText id="name" type="text" formControlName="name" class="w-full" />
-        @if(registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+        <input pInputText id="name" type="text" formControlName="username" class="w-full" />
+        @if(registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
           <small class="p-error text-red-500">Username is required and must be at least 2 characters</small>
         }
       </div>
