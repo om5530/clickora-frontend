@@ -26,16 +26,13 @@ export class Login {
     });
   }
 
-  onSubmit(): void {
+  onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
     }
-    this.router.navigate(['/customer']);
-  }
-
-  login() {
     firstValueFrom(this.authService.loginUser({ email: this.loginForm.value.email, password: this.loginForm.value.password }))
       .then((user) => {
+        this.router.navigate(['/customer']);
         console.log('Login successful:', user);
         this.router.navigate(['/customer']);
       }
