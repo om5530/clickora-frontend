@@ -1,11 +1,31 @@
-<p-menubar [model]="items">
-  <ng-template pTemplate="start">
-    <img src="/c1.jpg" alt="Logo" height="40" />
-  </ng-template>
+<div>
+    <nav class="bg-[#FAEDE1] flex items-center justify-between w-full h-14 shadow-md">
+        <div class="px-10">
+            <img src="/logo.png" alt="Logo" class="w-14"/>
+        </div>
+        <div>
+            <ul class="gap-6 md:flex hidden">
+                <li class="cursor-pointer text-amber-800">Home</li>
+                <li class="cursor-pointer text-amber-800">Shop</li>
+                <li class="cursor-pointer text-amber-800">About</li>
+            </ul>
+        </div>
+        <div>
+        <span class="cursor-pointer text-amber-800 px-10 hidden md:block">Login</span>
+        </div>
+        <div class="md:hidden">
+            <a href="#" class="text-4xl">&#8801;</a>
+        </div>
+    </nav>
+    <div class="w-full h-[691px] bg-[#FAEDE1] py-20">
+        <div class="text-center">
+            <h1 class="text-[#7C4300] text-4xl font-bold">
+                Delightful Treats for<br/> Every Occasion.
+            </h1>
+            <p class="text-stone-600 py-3">Freshly Baked Just for you!</p>
+            <button class="text-white px-4 py-2 border bg-slate-600 border-spacing-x-2 rounded-md">Check it out</button>
+        </div>
+    </div>
 
-  <ng-template pTemplate="end">
-    <button pButton label="Logout" (click)="logout()" icon="pi pi-sign-out" class="p-button-sm p-button-text text-red-500"></button>
-  </ng-template>
-</p-menubar>
-
+</div>
 <router-outlet></router-outlet>
